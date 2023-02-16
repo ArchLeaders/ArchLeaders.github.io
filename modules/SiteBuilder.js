@@ -18,28 +18,19 @@ export class SiteBuilder {
                 ul.innerHTML += SiteBuilder.BuildCardHtml(
                     repo.name,
                     repo.html_url,
-                    repo.description,
-                    repo.created_at,
-                    repo.language,
-                    repo.license.name
+                    repo.description ?? "None",
+                    repo.language ?? "None",
+                    repo.license?.name ?? "None"
                 )
             }
         });
     }
 
-    static BuildCardHtml(title, http, desc, date, lang, license) {
-        let parsedDate = Date.parse(date).toLocaleString('en-US', {
-            weekday: 'short',
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric'
-        });
-
+    static BuildCardHtml(title, http, desc, lang, license) {
         return `
         <div class="card">
             <a class="card__title" target="_blank" href="${http}">${title}</a>
             <p class="card__desc">${desc}</p>
-            <hr class="class_seperator">
             <div class="card__info">
                 <p class="card__language">${lang}</p>,
                 <p class="card__license">${license}</p>
