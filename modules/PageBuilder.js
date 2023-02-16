@@ -30,14 +30,14 @@ export class SiteBuilder {
 
     static BuildCardHtml(title, http, desc, lang, license) {
         return `
-        <div class="card" onclick="location.href='${http}'">
+        <button class="card" onclick="location.href='${http}'">
             <a class="card__title">${title}</a>
             <p class="card__desc">${desc}</p>
             <div class="card__info">
                 <p class="card__language">${lang}</p>,
                 <p class="card__license">${license}</p>
             </div>
-        </div>
+        </button>
         `
     }
 
