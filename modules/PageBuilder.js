@@ -1,7 +1,7 @@
 import { Octokit, App } from "https://cdn.skypack.dev/octokit";
 
 
-export class SiteBuilder {
+export class PageBuilder {
     static async BuildRepoList() {
         let octokit = new Octokit();
         let request = await octokit.request("GET /users/{username}/repos", {
@@ -18,7 +18,7 @@ export class SiteBuilder {
                 return;
             }
 
-            ul.innerHTML += SiteBuilder.BuildCardHtml(
+            ul.innerHTML += this.BuildCardHtml(
                 repo.name,
                 repo.html_url,
                 repo.description ?? "None",
