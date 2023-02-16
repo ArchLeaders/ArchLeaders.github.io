@@ -14,22 +14,24 @@ export class SiteBuilder {
         let repos = request.data;
         let ul = document.getElementById("github-repos");
         repos.forEach(repo => {
-            if (!repo.fork) {
-                ul.innerHTML += SiteBuilder.BuildCardHtml(
-                    repo.name,
-                    repo.html_url,
-                    repo.description ?? "None",
-                    repo.language ?? "None",
-                    repo.license?.name ?? "None"
-                )
+            if (repo.fork) {
+                return;
             }
+
+            ul.innerHTML += SiteBuilder.BuildCardHtml(
+                repo.name,
+                repo.html_url,
+                repo.description ?? "None",
+                repo.language ?? "None",
+                repo.license?.name ?? "None"
+            )
         });
     }
 
     static BuildCardHtml(title, http, desc, lang, license) {
         return `
-        <div class="card">
-            <a class="card__title" target="_blank" href="${http}">${title}</a>
+        <div class="card" onclick="location.href='${http}'">
+            <a class="card__title">${title}</a>
             <p class="card__desc">${desc}</p>
             <div class="card__info">
                 <p class="card__language">${lang}</p>,
@@ -39,11 +41,11 @@ export class SiteBuilder {
         `
     }
 
-    static async BuildGameBananaList() {
+    static async BuildYouTubeList() {
 
     }
 
-    static async BuildSocialList() {
+    static async BuildModList() {
 
     }
 }
