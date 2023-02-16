@@ -1,3 +1,3 @@
-import { SiteBuilder } from "./modules/SiteBuilder.js";
+import { SiteBuilder } from "./modules/PageBuilder.js";
 
 await SiteBuilder.BuildRepoList();
