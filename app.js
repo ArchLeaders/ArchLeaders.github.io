@@ -1,3 +1,6 @@
-import { SiteBuilder } from "./modules/PageBuilder.js";
+import { PageBuilder } from "./modules/PageBuilder.js";
+import { NavBuilder } from "./modules/NavBuilder.js";
 
-await SiteBuilder.BuildRepoList();
+await PageBuilder.BuildRepoList();
+await NavBuilder.BuildPages();
+await NavBuilder.BuildSocials();
