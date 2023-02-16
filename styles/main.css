@@ -12,8 +12,8 @@
 * {
     background-color: var(--background);
     color: var(--foreground);
-    margin: 0px;
     font-family: 'Ubuntu';
+    margin: 0;
 }
 
 .wrapper {
@@ -39,47 +39,4 @@ h1 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     margin: 0 -0.7rem;
-}
-
-.card {
-    display: grid;
-    border-radius: 3px;
-    margin: 0.7rem;
-    padding: 0.7rem;
-    box-shadow: 0 0.25rem 0.7rem rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.4s;
-}
-
-.card:hover {
-    box-shadow: 0 0.25rem 0.7rem rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.4s;
-}
-
-.card__title {
-    display: block;
-    font-size: 1.2rem;
-    color: var(--primary);
-    margin: 0 0 0.1rem;
-    text-decoration-color: rgb(0 0 0 / 0);
-    transition: text-decoration-color 0.2s;
-}
-
-.card__desc {
-    display: block;
-    font-size: 0.9rem;
-    margin: 0 0 0.6rem;
-}
-
-.class_seperator {
-    margin: 0.4rem 0;
-}
-
-.card__info * {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 800;
-}
-
-.card__language {
-    color: var(--accent);
 }
