@@ -1,18 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 :root {
-    --foreground: #C1C1C1;
+    --background: rgb(241, 241, 245);
+    --foreground: #505050;
 
-    --accent-light: #4852da;
-    --accent-mid: #4852da;
-    --accent-dark: #292b4b;
+    --primary: #60a9d9;
+    --secondary: #8c9bad;
+    --accent: #efb632;
 }
 
 * {
-    background-color: #171717;
+    background-color: var(--background);
     color: var(--foreground);
     margin: 0px;
-    font-family: Ubuntu;
+    font-family: 'Ubuntu';
 }
 
 .wrapper {
@@ -27,90 +28,49 @@
 
 hr {
     margin: 25px 0;
-    border: none;
-    height: 2px;
-    background-color: var(--accent-dark);
+    border: 1px solid var(--foreground);
 }
 
 h1 {
     margin: 25px 0;
 }
 
-h2 {
-    margin: 10px 0px;
-}
-
-h3 {
-    margin: 25px 0 15px 5px;
-}
-
-.grid-ul {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    width: 100%;
-}
-
-li {
-    display: inline-block;
-    background-color: #37415b;
-    margin: 5px;
-    padding: 5px;
-    width: 300px;
-}
-
-li b {
-    color: #969db1;
-    width: 60px;
-    display: inline-block;
-    margin: 0 3px 0 0;
-}
-
-.quote {
-    display: inline-block;
-    border: 1px solid #37415b;
-    margin: 5px 5px 5px 10px;
-    border-radius: 3px;
-    padding: 1px 6px;
-    font-family: "consolas";
-}
-
 .layout {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    margin: 0 -0.7rem;
 }
 
 .card {
-    border: 1px solid #3a404d;
+    display: grid;
     border-radius: 3px;
-    margin: 0.3rem;
+    margin: 0.7rem;
     padding: 0.7rem;
+    box-shadow: 0 0.25rem 0.7rem rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.4s;
+}
+
+.card:hover {
+    box-shadow: 0 0.25rem 0.7rem rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.4s;
 }
 
 .card__title {
     display: block;
     font-size: 1.2rem;
-    color: var(--accent-dark);
-    margin: 0 0 0.3rem;
+    color: var(--primary);
+    margin: 0 0 0.1rem;
     text-decoration-color: rgb(0 0 0 / 0);
-    transition: all 0.2s;
-}
-
-.card__title:hover {
-    text-decoration-color: rgb(var(--foreground) / 1);
-    transition: all 0.2s;
+    transition: text-decoration-color 0.2s;
 }
 
 .card__desc {
     display: block;
     font-size: 0.9rem;
-    margin: 0 0 0.3rem;
+    margin: 0 0 0.6rem;
 }
 
 .class_seperator {
-    border: none;
-    background-color: var(--accent-dark);
-    height: 1px;
     margin: 0.4rem 0;
 }
 
@@ -121,5 +81,5 @@ li b {
 }
 
 .card__language {
-    color: #169a16;
+    color: var(--accent);
 }
