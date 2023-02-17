@@ -18,7 +18,7 @@
 }
 
 .card:hover {
-    box-shadow: 0 0.25rem 0.7rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.25rem var(--shadow-depth) rgba(0, 0, 0, 0.2);
 }
 
 .card__title {
