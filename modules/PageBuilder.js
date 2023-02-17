@@ -1,17 +1,6 @@
-import { Octokit, App } from "https://cdn.skypack.dev/octokit";
-
-
 export class PageBuilder {
     static async BuildRepoList() {
-        let octokit = new Octokit();
-        let request = await octokit.request("GET /users/{username}/repos", {
-            username: "ArchLeaders",
-            type: "forks",
-            per_page: 40,
-            sort: "pushed"
-        });
-
-        let repos = request.data;
+        let repos = await fetch("https://api.github.com/users/ArchLeaders/repos?type=forks&per_page=40&sort=pushed").then(x => x.json());
         let ul = document.getElementById("github-repos");
         repos.forEach(repo => {
             if (repo.fork) {
