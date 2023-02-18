@@ -1,75 +1,59 @@
-// 
-// Handle dynamic routes
+import { docx } from "/modules/docx.js";
+import { gitx } from "/modules/gitx.js";
 
-import { Octokit, App } from "https://cdn.skypack.dev/octokit";
+docx.loadCss("card");
+docx.loadCss("project");
 
-let octokit = new Octokit();
-let repos = [];
+let root = docx.create("div", "panel");
+let tempLayout = docx.create("div", "card-layout");
+docx.add(root);
 
-export class project {
+initLoading();
 
-    static async loadRepos(username, type) {
-        let user = await octokit.request("GET /{_type}/{username}", {
-            _type: type,
-            username: username
-        }).then(x => x.data);
+let params = new URLSearchParams(window.location.search);
+let proj = params.get("proj");
+let user = params.get("user");
+let type = params.get("type");
 
-        let page = 1;
-        while (repos.length < user.public_repos) {
-            let _repos = await octokit.request("GET /{_type}/{username}/repos", {
-                _type: type,
-                username: username,
-                type: 'public',
-                per_page: user.public_repos > (100 * page) ? 100 : user.public_repos - (100 * (page - 1)),
-                page: page
-            }).then(x => x.data);
+if (proj && user && type) {
+    await showRepoDetails(proj);
+}
+else {
+    await loadRepoGrid();
+}
 
-            repos = repos.concat(_repos);
-            page++;
-        }
 
-        console.log(`Received ${repos.length} repositories from 'GET /${type}/${username}/repos'`)
-    }
+function initLoading() {
+    let card = docx.create("div", "card");
+    let title = docx.createWith("p", "card__title", "Loading Repositories. . .");
+    card.appendChild(title);
+    tempLayout.appendChild(card);
+    root.appendChild(tempLayout);
+}
 
-    static async buildProjectsPage(topic) {
-        await this.loadRepos("ArchLeaders", 'users');
+async function loadRepoGrid() {
+    let layout = docx.create("div", "card-groups");
+    let groups = await fetch("/data/projects.json").then(x => x.json());
 
-        let elements = '';
-        repos.forEach(repo => {
-            if (repo.fork || !repo.topics.includes(topic)) {
-                return;
-            }
+    for (let name in groups) {
+        let group = groups[name];
+        let panel = docx.create("div", "card-group");
+        layout.appendChild(panel);
 
-            elements += this.buildCardHtml(
-                repo.name,
-                repo.html_url,
-                repo.description ?? "None",
-                repo.language ?? "None",
-                repo.license?.name ?? "None"
-            )
-        });
+        let html = await gitx.buildReposGrid(group.user, group.type, group.topic);
+        let cards = docx.createWith("div", "card-layout", html);
 
-        document.getElementById("github-repos").innerHTML = elements;
-    }
-
-    static buildCardHtml(title, http, desc, lang, license) {
-        return `
-        <button class="card" onclick="location.href='${http}'">
-            <a class="card__title">${title}</a>
-            <p class="card__desc">${desc}</p>
-            <div class="card__info">
-                <p class="card__language">${lang}</p>,
-                <p class="card__license">${license}</p>
-            </div>
-        </button>
-        `
-    }
-
-    static async buildYouTubeList() {
+        panel.appendChild(docx.createWith("h1", "card-group__title", name));
+        panel.appendChild(docx.createWith("p", "card-group__desc", group.desc));
+        panel.appendChild(cards);
 
     }
 
-    static async buildModList() {
+    tempLayout.remove();
+    root.appendChild(layout);
+}
 
-    }
+async function showRepoDetails(user, proj, type) {
+    let panel = docx.createWith("div", "proj", await fetch('./temp.html').then(x => x.text()));
+    root.appendChild(panel);
 }
