@@ -1,10 +1,37 @@
+:root {
+    --layout-height: min-content;
+    --layout-visibility: inherit;
+}
+
+.card-group {
+    margin-bottom: 4rem;
+}
+
+.card-group__title {
+    font-weight: 200;
+}
+
+.card-group__desc {
+    margin: 0.7rem;
+    color: var(--secondary);
+}
+
+.card-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    margin: 0 -0.7rem;
+    grid-area: 1 / 1;
+    height: var(--layout-height);
+    visibility: var(--layout-visibility);
+}
+
 .card {
     display: grid;
     cursor: pointer;
     border-radius: 3px;
     margin: 0.7rem;
     padding: 0.7rem;
-    box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0);
     transition: box-shadow 0.2s ease-in;
     transition: box-shadow 0.4s ease-out;
 
@@ -13,12 +40,12 @@
     text-align: left;
 }
 
-.card * {
-    cursor: pointer;
+.card:hover {
+    box-shadow: 0 0 var(--shadow-depth) rgba(0, 0, 0, 0.2);
 }
 
-.card:hover {
-    box-shadow: 0 0.25rem var(--shadow-depth) rgba(0, 0, 0, 0.2);
+.card * {
+    cursor: pointer;
 }
 
 .card__title {
