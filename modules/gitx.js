@@ -1,20 +1,25 @@
 import { Octokit } from "https://cdn.skypack.dev/octokit";
 
 let octokit = new Octokit();
+let cache = {}
 
 export class gitx {
-    static async loadReposFrom(username, type) {
+    static async loadReposFrom(name, type) {
+        if (cache[name] != null) {
+            return cache[name];
+        }
+
         let repos = [];
         let user = await octokit.request("GET /{_type}/{username}", {
             _type: type,
-            username: username
+            username: name
         }).then(x => x.data);
 
         let page = 1;
         while (repos.length < user.public_repos) {
             let _repos = await octokit.request("GET /{_type}/{username}/repos", {
                 _type: type,
-                username: username,
+                username: name,
                 type: 'public',
                 per_page: user.public_repos > (100 * page) ? 100 : user.public_repos - (100 * (page - 1)),
                 page: page
@@ -24,15 +29,16 @@ export class gitx {
             page++;
         }
 
-        console.log(`Received ${repos.length} repositories from 'GET /${type}/${username}/repos'`)
+        console.log(`Received ${repos.length} repositories from 'GET /${type}/${name}/repos'`)
+        cache[name] = repos;
         return repos;
     }
 
-    static async buildReposGrid(username, type, topic) {
+    static async buildReposGrid(name, type, topic) {
         let html = '';
-        let repos = await this.loadReposFrom(username, type);
+        let repos = await this.loadReposFrom(name, type);
         repos.forEach(repo => {
-            if (repo.name == `${username}.github.io` || repo.name == ".github" || repo.fork || !repo.topics.includes(topic)) {
+            if (repo.name == `${name}.github.io` || repo.name == ".github" || repo.fork || !repo.topics.includes(topic)) {
                 return;
             }
 
