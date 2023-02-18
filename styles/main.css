@@ -32,13 +32,13 @@
     grid-column: 2;
 }
 
+.panel {
+    display: grid;
+    grid-template-areas:
+        1fr;
+}
+
 hr {
     margin: 25px 0;
     border: 1px solid var(--foreground);
-}
-
-.layout {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    margin: 0 -0.7rem;
 }
