@@ -12,13 +12,13 @@ export class docx {
         document.getElementById('root').appendChild(element);
     }
 
-    static Create(tag, cls) {
+    static create(tag, cls) {
         let element = document.createElement(tag);
         element.classList.add(cls);
         return element;
     }
 
-    static CreateWith(tag, cls, html) {
+    static createWith(tag, cls, html) {
         let element = document.createElement(tag);
         element.classList.add(cls);
         element.innerHTML = html;

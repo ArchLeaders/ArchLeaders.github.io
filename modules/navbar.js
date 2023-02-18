@@ -4,23 +4,21 @@ export class navbar {
     static async buildNavBar() {
         docx.loadCss("navbar");
 
-        let navbar = docx.Create("div", "navbar");
-        docx.add(navbar);
+        let navbar = docx.create("div", "navbar");
 
-        let title = docx.CreateWith("h1", "navbar__title", document.title);
+        let title = docx.createWith("h1", "navbar__title", document.title);
         navbar.appendChild(title);
 
-        let pages = docx.Create("div", "navbar__pages");
+        let pages = docx.create("div", "navbar__pages");
         this.buildNavPages(pages);
         navbar.appendChild(pages);
 
-        let socials = docx.Create("div", "navbar__socials");
+        let socials = docx.create("div", "navbar__socials");
         this.buildNavSocials(socials);
         navbar.appendChild(socials);
 
-        docx.add(
-            docx.Create("hr", "navbar__hr")
-        )
+        docx.add(navbar);
+        docx.add(docx.create("hr", "navbar__hr"));
     }
 
     static async buildNavPages(src) {
