@@ -1,0 +1,27 @@
+{
+    "U-King Editor": {
+        "user": "UKing-Editor",
+        "topic": "botw",
+        "type": "org"
+    },
+    "Nintendo Common Formats": {
+        "user": "NCF-Library",
+        "topic": "botw",
+        "type": "org"
+    },
+    "Botw Tools & Libraries": {
+        "user": "ArchLeaders",
+        "topic": "botw",
+        "type": "user"
+    },
+    "Avalonia Tools": {
+        "user": "ArchLeaders",
+        "topic": "avaloniaui",
+        "type": "user"
+    },
+    "Discord Bots": {
+        "user": "ArchLeaders",
+        "topic": "discord-bot",
+        "type": "user"
+    }
+}
