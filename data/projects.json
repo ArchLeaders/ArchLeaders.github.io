@@ -1,27 +1,32 @@
 {
     "U-King Editor": {
         "user": "UKing-Editor",
+        "desc": "A general purpose application for editing various BOTW (and hopefully TotK) files",
         "topic": "botw",
-        "type": "org"
+        "type": "orgs"
     },
     "Nintendo Common Formats": {
         "user": "NCF-Library",
+        "desc": "An organized collection of C# Nintendo format libraries primarily aimed at BOTW file formats",
         "topic": "botw",
-        "type": "org"
+        "type": "orgs"
     },
     "Botw Tools & Libraries": {
         "user": "ArchLeaders",
+        "desc": "A collection of personal tools and libraries for BOTW",
         "topic": "botw",
-        "type": "user"
+        "type": "users"
     },
-    "Avalonia Tools": {
+    "Avalonia UI": {
         "user": "ArchLeaders",
+        "desc": "Various tools and libraries for the cross-platform UI framework Avalonia",
         "topic": "avaloniaui",
-        "type": "user"
+        "type": "users"
     },
     "Discord Bots": {
         "user": "ArchLeaders",
+        "desc": "My discord bots!",
         "topic": "discord-bot",
-        "type": "user"
+        "type": "users"
     }
 }
