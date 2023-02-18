@@ -1,5 +1,5 @@
-export class Document {
-    static LoadCss(name) {
+export class docx {
+    static loadCss(name) {
         let link = document.createElement("link");
         link.rel = "stylesheet";
         link.type = "text/css";
@@ -8,7 +8,7 @@ export class Document {
         document.head.appendChild(link);
     }
 
-    static Add(element) {
+    static add(element) {
         document.getElementById('root').appendChild(element);
     }
 

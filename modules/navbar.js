@@ -1,36 +1,36 @@
-import { Document } from "./Document.js";
+import { docx } from "./docx.js";
 
-export class NavBuilder {
-    static async BuildNavBar() {
-        Document.LoadCss("navbar");
+export class navbar {
+    static async buildNavBar() {
+        docx.loadCss("navbar");
 
-        let navbar = Document.Create("div", "navbar");
-        Document.Add(navbar);
+        let navbar = docx.Create("div", "navbar");
+        docx.add(navbar);
 
-        let title = Document.CreateWith("h1", "navbar__title", document.title);
+        let title = docx.CreateWith("h1", "navbar__title", document.title);
         navbar.appendChild(title);
 
-        let pages = Document.Create("div", "navbar__pages");
-        this.BuildNavPages(pages);
+        let pages = docx.Create("div", "navbar__pages");
+        this.buildNavPages(pages);
         navbar.appendChild(pages);
 
-        let socials = Document.Create("div", "navbar__socials");
-        this.BuildNavSocials(socials);
+        let socials = docx.Create("div", "navbar__socials");
+        this.buildNavSocials(socials);
         navbar.appendChild(socials);
 
-        Document.Add(
-            Document.Create("hr", "navbar__hr")
+        docx.add(
+            docx.Create("hr", "navbar__hr")
         )
     }
 
-    static async BuildNavPages(src) {
+    static async buildNavPages(src) {
         let pages = await fetch("/data/pages.json").then(x => x.json());
         for (let key in pages) {
             src.innerHTML += `<a class="navbar__page" href="${pages[key]}">${key}</a>`;
         }
     }
 
-    static async BuildNavSocials(src) {
+    static async buildNavSocials(src) {
         let socials = await fetch("/data/socials.json").then(x => x.json());
         for (let key in socials) {
             src.innerHTML += `
@@ -42,3 +42,5 @@ export class NavBuilder {
         }
     }
 }
+
+await navbar.buildNavBar();

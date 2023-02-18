@@ -1,11 +1,14 @@
+// 
+// Handle dynamic routes
+
 import { Octokit, App } from "https://cdn.skypack.dev/octokit";
 
 let octokit = new Octokit();
 let repos = [];
 
-export class PageBuilder {
+export class project {
 
-    static async LoadRepos(username, type) {
+    static async loadRepos(username, type) {
         let user = await octokit.request("GET /{_type}/{username}", {
             _type: type,
             username: username
@@ -28,8 +31,8 @@ export class PageBuilder {
         console.log(`Received ${repos.length} repositories from 'GET /${type}/${username}/repos'`)
     }
 
-    static async BuildProjectsPage(topic) {
-        await this.LoadRepos("ArchLeaders", 'users');
+    static async buildProjectsPage(topic) {
+        await this.loadRepos("ArchLeaders", 'users');
 
         let elements = '';
         repos.forEach(repo => {
@@ -37,7 +40,7 @@ export class PageBuilder {
                 return;
             }
 
-            elements += this.BuildCardHtml(
+            elements += this.buildCardHtml(
                 repo.name,
                 repo.html_url,
                 repo.description ?? "None",
@@ -49,7 +52,7 @@ export class PageBuilder {
         document.getElementById("github-repos").innerHTML = elements;
     }
 
-    static BuildCardHtml(title, http, desc, lang, license) {
+    static buildCardHtml(title, http, desc, lang, license) {
         return `
         <button class="card" onclick="location.href='${http}'">
             <a class="card__title">${title}</a>
@@ -62,11 +65,11 @@ export class PageBuilder {
         `
     }
 
-    static async BuildYouTubeList() {
+    static async buildYouTubeList() {
 
     }
 
-    static async BuildModList() {
+    static async buildModList() {
 
     }
 }

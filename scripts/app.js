@@ -1,6 +1,6 @@
-import { Document } from "/modules/Document.js";
+import { docx } from "/modules/docx.js";
 
-Document.LoadCss("main");
+docx.loadCss("main");
 
 document.body.innerHTML = `<div class="wrapper">
     <div class="container" id="root"></div>
