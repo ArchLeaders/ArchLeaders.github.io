@@ -1,0 +1,31 @@
+.proj {
+    display: grid;
+    background-color: var(--background);
+    padding: 1rem;
+    grid-area: 1 / 1;
+    z-index: 1;
+
+    border-radius: 3px;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0);
+    transition: box-shadow 0.2s ease-in;
+    transition: box-shadow 0.4s ease-out;
+}
+
+.proj:hover {
+    box-shadow: 0 0rem var(--shadow-depth) rgba(0, 0, 0, 0.2);
+}
+
+.proj__title {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.proj__close-btn {
+    /* Reset button styles */
+    border: none;
+    text-align: left;
+}
+
+.proj__icon {
+    color: var(--secondary);
+}
