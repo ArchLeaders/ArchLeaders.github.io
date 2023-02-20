@@ -56,7 +56,7 @@ export class gitx {
 
     static buildRepoCardHtml(name, author, type, desc, lang, license) {
         return `
-        <button class="card" onclick="window.location.search = '?proj=${name}&user=${author}&type=${type}'">
+        <button class="card" onclick="window.location.search = '?repo=${name}&owner=${author}'">
             <a class="card__title">${name}</a>
             <p class="card__desc">${desc}</p>
             <div class="card__info">
@@ -66,7 +66,13 @@ export class gitx {
         </button>`;
     }
 
-    static getReadme(proj, user, type) {
-
+    static async getReadme(repo, owner) {
+        return await octokit.request("GET /repos/{owner}/{repo}/readme", {
+            owner: owner,
+            repo: repo,
+            headers: {
+                "Accept": "application/vnd.github.html"
+            }
+        }).then(x => x.data);
     }
 }
