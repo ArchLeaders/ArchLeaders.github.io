@@ -11,12 +11,11 @@ docx.add(root);
 initLoading();
 
 let params = new URLSearchParams(window.location.search);
-let proj = params.get("proj");
-let user = params.get("user");
-let type = params.get("type");
+let repo = params.get("repo");
+let owner = params.get("owner");
 
-if (proj && user && type) {
-    await showRepoDetails(proj);
+if (repo && owner) {
+    await showRepoDetails(repo, owner);
 }
 else {
     await loadRepoGrid();
@@ -53,7 +52,7 @@ async function loadRepoGrid() {
     root.appendChild(layout);
 }
 
-async function showRepoDetails(user, proj, type) {
-    let panel = docx.createWith("div", "proj", await fetch('./temp.html').then(x => x.text()));
+async function showRepoDetails(proj, user) {
+    let panel = docx.createWith("div", "proj", await gitx.getReadme(proj, user));
     root.appendChild(panel);
 }
